@@ -37,8 +37,8 @@ module.exports = function(app){
         });
     app.put("/books/:id", async (request, response) => {
         try {
-            var book = await PersonModel.findById(request.params.id).exec();
-            person.set(request.body);
+            var book = await BookModel.findById(request.params.id).exec();
+            book.set(request.body);
             var result = await book.save();
             response.send(result);
             } catch (error) {
@@ -47,7 +47,7 @@ module.exports = function(app){
             });
     app.delete("/books/:id", async (request, response) => {
         try {
-            var result = await PersonModel.deleteOne({ _id: request.params.id }).exec( );
+            var result = await BookModel.deleteOne({ id: request.params.id }).exec( );
                 response.send(result);
                 } catch (error) {
                 response.status(500).send(error);
